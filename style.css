@@ -1,0 +1,531 @@
+/* ============================================
+   DEV PULSE SURVEY — styles.css
+   Aesthetic: Dark editorial / brutalist
+   Fonts: Bebas Neue (display) + DM Sans (body)
+   ============================================ */
+
+/* ---------- CSS Variables + Reset ---------- */
+*, *::before, *::after {
+  --bg:          #0b0c0e;
+  --surface:     #111316;
+  --surface-2:   #191c21;
+  --border:      #2a2d35;
+  --accent:      #e8ff47;
+  --accent-dim:  #b8cc38;
+  --text:        #e8eaf0;
+  --text-muted:  #6b7280;
+  --danger:      #ff4d6d;
+  --radius:      6px;
+  --transition:  0.2s ease;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---------- Background Decoration ---------- */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow {
+  position: fixed;
+  top: -200px;
+  right: -150px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(232, 255, 71, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- Layout ---------- */
+.site-header,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
+
+.tag {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+
+#title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(80px, 16vw, 140px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin-bottom: 28px;
+  background: linear-gradient(180deg, #ffffff 40%, #404040 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#description {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--text-muted);
+  max-width: 520px;
+  line-height: 1.7;
+  border-left: 2px solid var(--accent);
+  padding-left: 20px;
+}
+
+/* ---------- Form ---------- */
+#survey-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 80px;
+}
+
+/* ---------- Fieldsets ---------- */
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  /* No padding here — handled by legend + .fieldset-body */
+  padding: 0;
+  background: var(--surface);
+  position: relative;
+  /* overflow:hidden REMOVED — it was clipping input fields */
+  transition: border-color var(--transition);
+}
+
+fieldset::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+fieldset:focus-within {
+  border-color: rgba(232, 255, 71, 0.3);
+}
+
+fieldset:focus-within::after {
+  opacity: 1;
+}
+
+/* ---------- Legend ---------- */
+legend {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  /* Use display:block and padding instead of float to avoid layout issues */
+  display: block;
+  width: 100%;
+  padding: 28px 32px 0 32px;
+  margin-bottom: 0;
+}
+
+/* ---------- Fieldset body wrapper ---------- */
+.fieldset-body {
+  padding: 20px 32px 32px 32px;
+}
+
+.field-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* ---------- Fields ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.field:first-child {
+  margin-top: 0;
+}
+
+label:not(.radio-label):not(.check-label) {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  width: 100%;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="number"]::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232, 255, 71, 0.1);
+}
+
+input:invalid:not(:placeholder-shown) {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ---------- Select ---------- */
+.select-wrap {
+  position: relative;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 14px 48px 14px 16px;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232, 255, 71, 0.1);
+}
+
+select option {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 14px;
+  pointer-events: none;
+  font-weight: 500;
+}
+
+/* ---------- Radio & Checkbox Groups ---------- */
+.radio-group,
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.radio-label,
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-muted);
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.radio-label:hover,
+.check-label:hover {
+  border-color: rgba(232, 255, 71, 0.4);
+  color: var(--text);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  display: none;
+}
+
+.radio-custom,
+.check-custom {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--border);
+  flex-shrink: 0;
+  transition: border-color var(--transition), background var(--transition);
+  position: relative;
+}
+
+.radio-custom {
+  border-radius: 50%;
+}
+
+.check-custom {
+  border-radius: 3px;
+}
+
+input[type="radio"]:checked + .radio-custom,
+input[type="checkbox"]:checked + .check-custom {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+input[type="radio"]:checked + .radio-custom::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--bg);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[type="checkbox"]:checked + .check-custom::after {
+  content: '✓';
+  position: absolute;
+  font-size: 10px;
+  color: var(--bg);
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+}
+
+.radio-label:has(input:checked),
+.check-label:has(input:checked) {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(232, 255, 71, 0.05);
+}
+
+/* ---------- Submit ---------- */
+.submit-row {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+#submit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+#submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+#submit:hover {
+  background: var(--accent-dim);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 255, 71, 0.2);
+}
+
+#submit:hover::before {
+  opacity: 1;
+}
+
+#submit:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+#submit svg {
+  transition: transform var(--transition);
+}
+
+#submit:hover svg {
+  transform: translateX(4px);
+}
+
+/* ---------- Success Toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  color: var(--text);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toast-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.site-header {
+  animation: fadeUp 0.7s ease both;
+}
+
+fieldset {
+  animation: fadeUp 0.7s ease both;
+}
+
+fieldset:nth-child(1) { animation-delay: 0.1s; }
+fieldset:nth-child(2) { animation-delay: 0.2s; }
+fieldset:nth-child(3) { animation-delay: 0.3s; }
+fieldset:nth-child(4) { animation-delay: 0.4s; }
+fieldset:nth-child(5) { animation-delay: 0.5s; }
+
+.submit-row {
+  animation: fadeUp 0.7s 0.6s ease both;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 540px) {
+  .site-header { padding-top: 48px; }
+  legend { padding: 20px 20px 0 20px; }
+  .fieldset-body { padding: 16px 20px 24px 20px; }
+  .radio-group, .checkbox-group { grid-template-columns: 1fr 1fr; }
+  .submit-row { justify-content: stretch; }
+  #submit { width: 100%; justify-content: center; }
+}
