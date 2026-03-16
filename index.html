@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Pluse Survey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link href="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <header class="site-header">
+        <span class="tag">2026 EDITION</span>
+        <h1 id="title">Dev<br/>Pulse</h1>
+        <p id="description">
+            A quick survey for developers worldWide - tell us how you work,what you love, and what drives you crazy. No fluff, just signal.
+        </p>
+    </header>
+
+<main>
+    <form id="survey-form">
+        <fieldset>
+            <legend>Who are you ? </legend>
+            <div class="field">
+                <label id="name-label" for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Ada Lovelace" required />
+            </div>
+            
+            <div class="field">
+                <label id="email-label" for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="ada@example.com" required />
+            </div>
+
+            <div class="field">
+                <label id="number-label" for="number">Years of Experience</label>
+                <input type="number" id="number" name="number" placeholder="e.g.5" min="0" max="60" />
+            </div>
+      
+        </fieldset>
+
+        <fieldset>
+            <legend>Your Role</legend>
+            <div class="field">
+                <label for="dropdown">Primary Role</label>
+                <div class="select-wrap">
+                    <select id="dropdown" name="role" required>
+                        <option value="" disabled selected>Select Your role </option>
+                        <option value="frontend">Frontend Developer</option>
+                        <option value="backend">Backend Developer</option>
+                        <option value="fullstack">Full-Stack Developer</option>
+                        <option value="devops">devOps / Platform Engineer</option>
+                        <option value="data">ML Engineer</option>
+                        <option value="mobile">Mobile Developer</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <span class="select-arrow"></span>
+                </div>
+            </div>
+        </fieldset>
+
+    <fieldset>
+        <legend>Work Style</legend>
+        <p class="field-hint">How do you prefer to work ?</p>
+        <div class="radio-group">
+            <label class="radio-label">
+                <input type="radio" name="work-style" value="remote"/>
+                <span class="radio-custom"></span>
+                Full Remote
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="work-style" value="hybride"/>
+                <span class="radio-custom"></span>
+                Hybrid
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="work-style" value="on-site"/>
+                <span class="radio-custom"></span>
+                On-site
+            </label>
+
+            <label class="radio-label">
+                <input type="radio" name="work-style" value="Freelance "/>
+                <span class="radio-custom"></span>
+                Freelance / Solo
+            </label>
+        </div>
+     
+    </fieldset>
+    <fieldset>
+        <legend>Daily Tools</legend>
+        <p class="field-hint">Pick everything you use regulalry.</p>
+
+        <div class="checkbox-group">
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="vscode"/>
+                <span class="check-custom"></span>
+                VS Code
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="vscode"/>
+                <span class="check-custom"></span>
+                VS Code
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="vscode"/>
+                <span class="check-custom"></span>
+                VS Code
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="vscode"/>
+                <span class="check-custom"></span>
+                VS Code
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="vim"/>
+                <span class="check-custom"></span>
+                Vim / Neovim
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="git"/>
+                <span class="check-custom"></span>
+                Git / GitHub
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="docker"/>
+                <span class="check-custom"></span>
+                Docker
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="figma"/>
+                <span class="check-custom"></span>
+                Figma
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="ai-assistant"/>
+                <span class="check-custom"></span>
+                AI Coding Assistant
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="terminal"/>
+                <span class="check-custom"></span>
+                Terminal / CLI
+            </label>
+
+            <label class="check-label">
+                <input type="checkbox" name="tools" value="postman"/>
+                <span class="check-custom"></span>
+                Postman / Insomnia
+            </label>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Anything Else ? </legend>
+
+        <div class="field">
+            <label for="comments">Additional Comments</label>
+            <textarea id="comments" name="comments" row="5" placeholder="What's the one thing you'd change about developer tooling today?"></textarea>
+        </div>
+    </fieldset>
+
+    <div class="submit-row">
+        <button type="submit" id="submit">
+            <span>Submit Survey</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    </form>
+</main>
+<footer>
+    <p>Built for developers. No data sold, ever.</p>
+</footer>
+<script src="script.js"></script>
+    
+</body>
+</html>
